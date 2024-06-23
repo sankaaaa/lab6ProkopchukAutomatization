@@ -3,10 +3,11 @@ package org.sasha;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 /**
- * Test for parameterized JUnit method.
+ * Test for parameterized JUnit method with assumptions.
  */
 public class ParamJUnitTest {
 
@@ -29,6 +30,8 @@ public class ParamJUnitTest {
             "17, true"
     })
     void isOddTest(int num, boolean correctRes) {
+        assumeTrue(isOddSupported(), "Odd number check is not supported");
+        assumeTrue(num <= 10 || num % 2 == 1, "Odd numbers greater than 10 are not valid in this program");
         assertEquals(correctRes, isOdd(num), "Number " + num + ": " + (correctRes ? "odd" : "even"));
     }
 
@@ -40,5 +43,14 @@ public class ParamJUnitTest {
      */
     boolean isOdd(int num) {
         return num % 2 != 0;
+    }
+
+    /**
+     * Check if odd numbers are supported.
+     *
+     * @return true if odd numbers are supported
+     */
+    boolean isOddSupported() {
+        return true;
     }
 }

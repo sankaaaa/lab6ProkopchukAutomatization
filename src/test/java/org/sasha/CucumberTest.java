@@ -4,7 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 public class CucumberTest {
     private int varFirst;
@@ -30,11 +30,11 @@ public class CucumberTest {
 
     @Then("addition result: {int}")
     public void addition_result(int correctAdditionRes) {
-        assertEquals(correctAdditionRes, this.addNumber);
+        assertThat(this.addNumber).isEqualTo(correctAdditionRes);
     }
 
     @Then("subtraction result: {int}")
     public void subtraction_result(int correctSubtrRes) {
-        assertEquals(correctSubtrRes, this.subtractNumber);
+        assertThat(this.subtractNumber).isEqualTo(correctSubtrRes);
     }
 }
